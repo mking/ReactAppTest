@@ -1,7 +1,7 @@
 # Research
 
 TODO
-- Prod is broken???
+- Test Netlify rollback
 
 Development build checks
 - Does hot reloading work (check both css and js)?
