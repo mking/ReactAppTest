@@ -1,6 +1,6 @@
 import { createAction, createReducer, nanoid } from '@reduxjs/toolkit';
 import { camelCase, constantCase } from 'change-case';
-import fp from 'lodash/fp';
+import get from 'lodash/fp/get';
 
 const debug = require('debug')('ReactAppTest:entityHelpers');
 
@@ -19,13 +19,10 @@ export const createEntitySlice = ({ reducerKey, name, getEntitiesRemote }) => {
     [constantCase(`set ${name} entities`)]: SET_ENTITIES,
   };
 
-  const loadingSelector = fp.get([reducerKey, camelCase(`${name} loading`)]);
-  const errorSelector = fp.get([reducerKey, camelCase(`${name} error`)]);
-  const requestIdSelector = fp.get([
-    reducerKey,
-    camelCase(`${name} request id`),
-  ]);
-  const entitiesSelector = fp.get([reducerKey, camelCase(`${name} entities`)]);
+  const loadingSelector = get([reducerKey, camelCase(`${name} loading`)]);
+  const errorSelector = get([reducerKey, camelCase(`${name} error`)]);
+  const requestIdSelector = get([reducerKey, camelCase(`${name} request id`)]);
+  const entitiesSelector = get([reducerKey, camelCase(`${name} entities`)]);
 
   const selectors = {
     [camelCase(`${name} loading selector`)]: loadingSelector,

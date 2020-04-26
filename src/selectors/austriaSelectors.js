@@ -1,8 +1,8 @@
-import fp from 'lodash/fp';
+import get from 'lodash/fp/get';
 import { recordSlice } from '@app/src/actions/austriaActions';
 
-export const fooSelector = fp.get(['austria', 'foo']);
-export const commentSelector = fp.get(['austria', 'comment']);
+export const fooSelector = get(['austria', 'foo']);
+export const commentSelector = get(['austria', 'comment']);
 
 const {
   recordLoadingSelector,

@@ -1,7 +1,8 @@
 /*global REACT_APP_COVID_URL*/
 
-import fp from 'lodash/fp';
-import Promise from 'bluebird';
+import map from 'lodash/fp/map';
+import pick from 'lodash/fp/pick';
+import delay from 'delay';
 import { createEntitySlice } from '@app/src/helpers/entityHelpers';
 
 export const caseSlice = createEntitySlice({
@@ -11,8 +12,8 @@ export const caseSlice = createEntitySlice({
     const res = await axiosInstance.get(
       `${REACT_APP_COVID_URL}/total/country/switzerland/status/confirmed`
     );
-    await Promise.delay(1000);
-    const mappedData = fp.map((c) => fp.pick(['Country', 'Cases', 'Date'])(c))(
+    await delay(1000);
+    const mappedData = map((c) => pick(['Country', 'Cases', 'Date'])(c))(
       res.data
     );
     return mappedData;

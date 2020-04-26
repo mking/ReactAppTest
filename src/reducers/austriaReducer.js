@@ -5,13 +5,12 @@ import {
   setComment,
 } from '@app/src/actions/austriaActions';
 import { createReducer } from '@reduxjs/toolkit';
-import { EditorState } from 'draft-js';
 
 const fooReducer = createReducer(0, {
   [setFoo]: (state, action) => action.payload,
 });
 
-const commentReducer = createReducer(EditorState.createEmpty(), {
+const commentReducer = createReducer(null, {
   [setComment]: (state, action) => action.payload,
 });
 

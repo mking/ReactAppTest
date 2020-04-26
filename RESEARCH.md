@@ -23,3 +23,5 @@ Production build checks
 - Does it work in all supported browsers (check both css and js)?
 - Does routing work (both push state and full page load)? 
 - Do REACT_APP vars work?
+- Are static files compressed? Yes, Netlify does this for us.
+- Are static files cached? Yes, Netlify does this for us.

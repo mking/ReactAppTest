@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { Editor } from 'draft-js';
+import React, { useRef, useEffect } from 'react';
+import { Editor, EditorState } from 'draft-js';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
@@ -80,6 +80,10 @@ const AustriaCases = ({
     setComment(editorState);
   };
 
+  useEffect(() => {
+    setComment(EditorState.createEmpty());
+  }, [setComment]);
+
   return (
     <Container>
       <p>
@@ -96,11 +100,13 @@ const AustriaCases = ({
       <Divider />
       <p>Add note about Austria</p>
       <CommentContainer onClick={onCommentContainerClick}>
-        <Editor
-          ref={editorRef}
-          editorState={comment}
-          onChange={onCommentChange}
-        />
+        {comment && (
+          <Editor
+            ref={editorRef}
+            editorState={comment}
+            onChange={onCommentChange}
+          />
+        )}
       </CommentContainer>
       <Divider />
       <p>

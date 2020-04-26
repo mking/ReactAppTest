@@ -1,4 +1,4 @@
-import Promise from 'bluebird';
+import delay from 'delay';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -15,7 +15,7 @@ const AustriaCases = React.lazy(async () => {
   const module = await import(
     /* webpackChunkName: "austria" */ '@app/src/components/AustriaCases'
   );
-  await Promise.delay(1000);
+  await delay(1000);
   return module;
 });
 

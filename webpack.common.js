@@ -2,8 +2,8 @@ const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config({ path: path.resolve(__dirname, '.env.development') });
 
-const _ = require('lodash');
-const fp = require('lodash/fp');
+const keys = require('lodash/keys');
+const reduce = require('lodash/fp/reduce');
 const webpack = require('webpack');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -12,13 +12,13 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 
 const getReactAppVars = () => {
-  return fp.reduce(
+  return reduce(
     (env, k) => ({
       ...env,
       ...(/^REACT_APP_/.test(k) ? { [k]: JSON.stringify(process.env[k]) } : {}),
     }),
     {}
-  )(_.keys(process.env));
+  )(keys(process.env));
 };
 
 module.exports = ({ mode }) => ({
