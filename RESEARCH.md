@@ -15,4 +15,4 @@ Production build checks
 - How fast is the production website (using PageSpeed)?
 - Are source maps working (if you click on an error, does the browser jump to the correct line)?
 - Does it work in all supported browsers (check both css and js)?
-- Does push state work?
+- Does routing work (both push state and full page load)? 

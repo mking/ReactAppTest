@@ -2,12 +2,13 @@
   "private": true,
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --config webpack.development.js",
-    "start-static": "cd dist; static-server -p 3003",
+    "start-static": "http-server dist --port 3003 -c-1 --proxy http://localhost:3003?",
     "build": "NODE_ENV=production webpack --config webpack.production.js",
     "format": "prettier --check 'src/**/*.{js,css}'",
     "eslint": "eslint 'src/**/*.js'",
     "stylelint": "stylelint './src/**/*.js'",
-    "depcheck": "depcheck"
+    "depcheck": "depcheck",
+    "deduplicate": "yarn-deduplicate"
   },
   "dependencies": {
     "debug": "^4.1.1",
@@ -36,10 +37,10 @@
     "file-loader": "4.3.0",
     "history": "^4.10.1",
     "html-webpack-plugin": "4.0.0-beta.11",
+    "http-server": "^0.12.1",
     "prettier": "^2.0.5",
     "react-dev-utils": "^10.2.1",
     "react-router-dom": "^5.1.2",
-    "static-server": "^2.2.1",
     "styled-components": "^5.1.0",
     "stylelint": "^13.3.3",
     "stylelint-config-standard": "^20.0.0",
@@ -47,7 +48,8 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "webpack": "4.42.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "3.10.3"
+    "webpack-dev-server": "3.10.3",
+    "yarn-deduplicate": "^2.0.0"
   },
   "browserslist": {
     "production": [
