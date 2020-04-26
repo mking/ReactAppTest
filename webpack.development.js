@@ -27,10 +27,12 @@ module.exports = {
       disableDotRule: true,
       index: '/',
     },
+
+    // for webpackHotDevClient
     hot: true,
     transportMode: 'ws',
     injectClient: false,
-    overlay: false,
+
     watchOptions: {
       // reduce cpu usage from polling these files
       ignored: ignoredFiles(path.join(__dirname, 'src')),
