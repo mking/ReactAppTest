@@ -3,3 +3,6 @@ ignores:
   - stylelint-config-standard
   - stylelint-config-styled-components
   - stylelint-processor-styled-components
+  - eslint-import-resolver-babel-module
+  - immutable
+  - "@app/src"
