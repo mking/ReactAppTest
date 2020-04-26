@@ -6,3 +6,4 @@ ignores:
   - eslint-import-resolver-babel-module
   - immutable
   - "@app/src"
+  - core-js
