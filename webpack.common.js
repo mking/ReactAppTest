@@ -10,6 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const getReactAppVars = () => {
   return reduce(
@@ -68,7 +69,10 @@ module.exports = ({ mode }) => ({
             ],
             use: [
               {
-                loader: require.resolve('style-loader'),
+                loader:
+                  mode === 'development'
+                    ? require.resolve('style-loader')
+                    : MiniCssExtractPlugin.loader,
               },
               {
                 loader: require.resolve('css-loader'),

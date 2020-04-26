@@ -2,6 +2,9 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const common = require('./webpack.common');
 
 const commonConfig = common({
@@ -12,6 +15,9 @@ module.exports = {
   ...commonConfig,
   mode: 'production',
   devtool: 'source-map',
+  optimization: {
+    minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
+  },
   plugins: [
     ...commonConfig.plugins,
     new CleanWebpackPlugin(),
@@ -27,6 +33,10 @@ module.exports = {
       statsOptions: {
         source: false,
       },
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
     }),
   ],
 };
