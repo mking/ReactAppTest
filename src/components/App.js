@@ -1,5 +1,6 @@
 import React from 'react';
 import { Global, keyframes } from '@emotion/core';
+import ErrorButton from './ErrorButton';
 
 const App = () => {
   return (
@@ -15,14 +16,20 @@ const App = () => {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
-            css={styles.link}
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <p>
+            <ErrorButton />
+          </p>
+          <p>Test</p>
+          <p>
+            <a
+              css={styles.link}
+              href="https://reactjs.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn React
+            </a>
+          </p>
         </header>
       </div>
     </React.StrictMode>

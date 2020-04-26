@@ -10,7 +10,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const ignoredFiles = require('react-dev-utils/ignoredFiles');
 
 const copyReactAppDefines = () => {
   return fp.reduce((env, k) => ({
@@ -19,12 +18,14 @@ const copyReactAppDefines = () => {
   }))(_.keys(process.env));
 };
 
-module.exports = {
-  mode: 'development',
-  devtool: 'cheap-module-source-map',
+module.exports = ({ mode }) => ({
   entry: [path.resolve(__dirname, 'src/index')],
   output: {
-    filename: 'static/js/bundle.js',
+    filename: `static/js/[name]${
+      mode === 'development' ? '' : '.[hash]'
+    }.bundle.js`,
+    publicPath: '/',
+    path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
     extensions: ['.js', '.json'],
@@ -66,8 +67,8 @@ module.exports = {
             loader: require.resolve('file-loader'),
             include: /\.(jpg|png|svg)$/,
             options: {
-              name: '[name].[hash:8].[ext]',
-              outputPath: 'static/media',
+              name: `[name]${mode === 'development' ? '' : '.[hash]'}.[ext]`,
+              outputPath: 'static/assets',
             },
           },
         ],
@@ -82,12 +83,9 @@ module.exports = {
     }),
     // set global variables
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(
-        process.env.NODE_ENV || 'development'
-      ),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       ...copyReactAppDefines(),
     }),
-    new webpack.HotModuleReplacementPlugin(),
     // add additional info to module not found errors
     new ModuleNotFoundPlugin(__dirname),
     // warn if import and filename have different cases
@@ -97,15 +95,4 @@ module.exports = {
     // exclude large files from the build
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
-  devServer: {
-    host: 'localhost',
-    port: 3002,
-    contentBase: path.join(__dirname, 'public'),
-    historyApiFallback: true,
-    hot: true,
-    watchOptions: {
-      // reduce cpu usage from polling these files
-      ignored: ignoredFiles(path.join(__dirname, 'src')),
-    },
-  },
-};
+});
