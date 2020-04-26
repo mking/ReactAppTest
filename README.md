@@ -26,6 +26,11 @@ yarn build
 yarn start-static
 ```
 
+## Tools
+
+- Redux devtools
+- React devtools
+
 ## Services
 
 - Netlify: frontend deployment

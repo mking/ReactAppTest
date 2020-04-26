@@ -2,6 +2,12 @@
 
 TODO
 - Test Netlify rollback
+- Try redux-persist
+- Try react-hook-form
+- Evaluate performance impact of integrations
+- Try new React profiler
+- Try redux-saga
+- Analyze bundle size
 
 Development build checks
 - Does hot reloading work (check both css and js)?
