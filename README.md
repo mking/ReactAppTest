@@ -10,8 +10,11 @@ yarn start
 # format
 yarn format
 
-# lint
-yarn lint
+# eslint
+yarn eslint
+
+# stylelint
+yarn stylelint
 
 # depcheck
 yarn depcheck
