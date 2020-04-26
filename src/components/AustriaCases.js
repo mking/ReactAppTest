@@ -1,19 +1,24 @@
 import React from 'react';
+import { Editor } from 'draft-js';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import StyledLink from './Common/StyledLink';
-import { getRecordEntities, setFoo } from '../actions/austriaActions';
+import {
+  getRecordEntities,
+  setFoo,
+  setComment,
+} from '../actions/austriaActions';
 import {
   recordLoadingSelector,
   recordEntitiesSelector,
   fooSelector,
+  commentSelector,
 } from '../selectors/austriaSelectors';
 
 const debug = require('debug')('ReactAppTest:AustriaCases');
 
 const Container = styled.div`
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,12 +35,21 @@ const TableData = styled.td`
   font-size: 16px;
 `;
 
+const EditorContainer = styled.div`
+  border: 1px solid #ffffff;
+  padding: 20px;
+  width: 400px;
+  min-height: 6em;
+`;
+
 const AustriaCases = ({
   recordLoading,
   recordEntities,
   foo,
+  comment,
   getRecordEntities,
   setFoo,
+  setComment,
 }) => {
   const onClick = async () => {
     debug('fetching austria records');
@@ -47,23 +61,34 @@ const AustriaCases = ({
     await setFoo(foo + 1);
   };
 
+  const onCommentChange = (editorState) => {
+    setComment(editorState);
+  };
+
   return (
     <Container>
       <p>
         <StyledLink to="/">Home</StyledLink>
       </p>
       <p>Austria</p>
-      <p>
-        <button type="button" onClick={onClick}>
-          Get Austria records {recordLoading ? '(loading...)' : ''}
-        </button>
-      </p>
+      <hr />
       <p>
         <button type="button" onClick={onFoo}>
           Foo
         </button>
       </p>
       <p>foo: {foo}</p>
+      <hr />
+      <p>Add note about Austria</p>
+      <EditorContainer>
+        <Editor editorState={comment} onChange={onCommentChange} />
+      </EditorContainer>
+      <hr />
+      <p>
+        <button type="button" onClick={onClick}>
+          Get Austria records {recordLoading ? '(loading...)' : ''}
+        </button>
+      </p>
       <Table loadingFlag={recordLoading}>
         <tbody>
           {recordEntities.map((recordEntity) => (
@@ -83,11 +108,13 @@ const mapStateToProps = createStructuredSelector({
   recordLoading: recordLoadingSelector,
   recordEntities: recordEntitiesSelector,
   foo: fooSelector,
+  comment: commentSelector,
 });
 
 const mapDispatchToProps = {
   getRecordEntities,
   setFoo,
+  setComment,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AustriaCases);

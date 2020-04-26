@@ -2,7 +2,6 @@
 
 TODO
 - Try module resolver with eslint
-- Sometimes eslint-loader puts webpack in a permanent failure mode 
 
 Development build checks
 - Does hot reloading work (check both css and js)?

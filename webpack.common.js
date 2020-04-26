@@ -22,11 +22,16 @@ const getReactAppVars = () => {
 };
 
 module.exports = ({ mode }) => ({
-  entry: [path.resolve(__dirname, 'src/index')],
+  entry: {
+    main: path.resolve(__dirname, 'src/index'),
+  },
   output: {
     filename: `static/js/[name]${
       mode === 'development' ? '' : '.[hash]'
     }.bundle.js`,
+    chunkFilename: `static/js/[name]${
+      mode === 'development' ? '' : '.[chunkhash]'
+    }.chunk.js`,
     publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
   },
@@ -41,16 +46,6 @@ module.exports = ({ mode }) => ({
   },
   module: {
     rules: [
-      // add eslint to webpack
-      {
-        test: /\.js$/,
-        include: path.resolve(__dirname, 'src'),
-        enforce: 'pre',
-        loader: require.resolve('eslint-loader'),
-        options: {
-          configFile: path.resolve(__dirname, '.eslintrc'),
-        },
-      },
       {
         oneOf: [
           // compile javascript with babel
@@ -63,6 +58,25 @@ module.exports = ({ mode }) => ({
               // improve cache restore speed at the expense of disk space
               cacheCompression: false,
             },
+          },
+          // compile css
+          {
+            test: /\.css$/,
+            include: [
+              path.resolve(__dirname, 'src'),
+              path.resolve(__dirname, 'node_modules/react-rte'),
+            ],
+            use: [
+              {
+                loader: require.resolve('style-loader'),
+              },
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  modules: true,
+                },
+              },
+            ],
           },
           // include images
           {

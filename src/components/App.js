@@ -5,13 +5,14 @@ import { Provider } from 'react-redux';
 import debug from 'debug';
 import CaseDirectory from './CaseDirectory';
 import SwitzerlandCases from './SwitzerlandCases';
-import AustriaCases from './AustriaCases';
+import AustriaSuspense from './AustriaSuspense';
 import LearnReact from './LearnReact';
 import { history } from '../helpers/routerHelpers';
 import { store } from '../helpers/reduxHelpers';
 
 const GlobalStyle = createGlobalStyle`
   body {
+    background-color: #282c34;
     margin: 0;
   }
 `;
@@ -32,7 +33,7 @@ const App = () => {
             <Switch>
               <Route exact path="/" component={CaseDirectory} />
               <Route exact path="/switzerland" component={SwitzerlandCases} />
-              <Route exact path="/austria" component={AustriaCases} />
+              <Route exact path="/austria" component={AustriaSuspense} />
               <Route component={LearnReact} />
             </Switch>
           </>
