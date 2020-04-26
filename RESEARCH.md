@@ -19,7 +19,7 @@ Production build checks
 - Are the js chunks optimized per page? 
 - Is the js minified?
 - How fast is the production website (using PageSpeed)?
-- Are source maps working (if you click on an error, does the browser jump to the correct line)?
+- Are source maps working (check both css and js)? If you click on an error, does the browser jump to the correct line?
 - Does it work in all supported browsers (check both css and js)?
 - Does routing work (both push state and full page load)? 
 - Do REACT_APP vars work?
