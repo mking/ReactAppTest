@@ -1,6 +1,9 @@
+/*global REACT_APP_COVID_URL*/
+
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import ErrorButton from './ErrorButton';
+import StyledLink from './Common/StyledLink';
 
 const Container = styled.div`
   background-color: #282c34;
@@ -38,8 +41,13 @@ const LearnReact = () => {
     <Container>
       <Logo src={require('../assets/logo.svg')} alt="logo" />
       <p>
+        <StyledLink to="/">Home</StyledLink>
+      </p>
+      <p>
         <ErrorButton />
       </p>
+      <p>NODE_ENV: {process.env.NODE_ENV}</p>
+      <p>REACT_APP_COVID_URL: {`${REACT_APP_COVID_URL}/api/123`}</p>
       <p>
         <Link
           href="https://reactjs.org"

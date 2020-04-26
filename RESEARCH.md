@@ -16,3 +16,4 @@ Production build checks
 - Are source maps working (if you click on an error, does the browser jump to the correct line)?
 - Does it work in all supported browsers (check both css and js)?
 - Does routing work (both push state and full page load)? 
+- Do REACT_APP vars work?

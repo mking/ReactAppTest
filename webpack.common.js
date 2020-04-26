@@ -11,11 +11,14 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 
-const copyReactAppDefines = () => {
-  return fp.reduce((env, k) => ({
-    ...env,
-    ...(/^REACT_APP_/.test(k) ? { [k]: JSON.stringify(process.env[k]) } : {}),
-  }))(_.keys(process.env));
+const getReactAppVars = () => {
+  return fp.reduce(
+    (env, k) => ({
+      ...env,
+      ...(/^REACT_APP_/.test(k) ? { [k]: JSON.stringify(process.env[k]) } : {}),
+    }),
+    {}
+  )(_.keys(process.env));
 };
 
 module.exports = ({ mode }) => ({
@@ -45,7 +48,6 @@ module.exports = ({ mode }) => ({
         enforce: 'pre',
         loader: require.resolve('eslint-loader'),
         options: {
-          cache: true,
           configFile: path.resolve(__dirname, '.eslintrc'),
         },
       },
@@ -84,7 +86,7 @@ module.exports = ({ mode }) => ({
     // set global variables
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      ...copyReactAppDefines(),
+      ...getReactAppVars(),
     }),
     // add additional info to module not found errors
     new ModuleNotFoundPlugin(__dirname),
