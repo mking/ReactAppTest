@@ -4,6 +4,7 @@
 
 [context.production]
   [context.production.environment]
+    NODE_VERSION = "12"
     REACT_APP_COVID_URL = "https://api.covid19api.com"
     
 [[redirects]]
