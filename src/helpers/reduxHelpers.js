@@ -1,3 +1,5 @@
+import set from 'lodash/fp/set';
+import { combineReducers } from 'redux';
 import {
   configureStore,
   createImmutableStateInvariantMiddleware,
@@ -5,11 +7,15 @@ import {
 } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import { axiosInstance } from '@app/src/helpers/axiosHelpers';
-import rootReducer from '@app/src/reducers/rootReducer';
 import { SET_COMMENT } from '@app/src/constants/austriaConstants';
+import switzerlandReducer from '@app/src/reducers/switzerlandReducer';
+
+let reducers = {
+  switzerland: switzerlandReducer,
+};
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: combineReducers(reducers),
   middleware: [
     thunk.withExtraArgument({
       axiosInstance,
@@ -27,3 +33,8 @@ export const store = configureStore({
       : []),
   ],
 });
+
+export const injectReducer = ({ reducerKey, reducer }) => {
+  reducers = set([reducerKey], reducer)(reducers);
+  store.replaceReducer(combineReducers(reducers));
+};

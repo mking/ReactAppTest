@@ -1,22 +1,24 @@
 import delay from 'delay';
 import React from 'react';
-import styled from 'styled-components';
-
-const Loading = styled.div`
-  color: #ffffff;
-  font-size: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-`;
+import Loading from './Common/Loading';
+import { injectReducer } from '../helpers/reduxHelpers';
 
 const AustriaCases = React.lazy(async () => {
-  const module = await import(
-    /* webpackChunkName: "austria" */ '@app/src/components/AustriaCases'
-  );
+  const [reducerModule, componentModule] = await Promise.all([
+    import(
+      /* webpackChunkName: "austriaReducer"  */ '@app/src/reducers/austriaReducer'
+    ),
+    import(
+      /* webpackChunkName: "AustriaCases" */ '@app/src/components/AustriaCases'
+    ),
+  ]);
+
   await delay(1000);
-  return module;
+  injectReducer({
+    reducerKey: 'austria',
+    reducer: reducerModule.default,
+  });
+  return componentModule;
 });
 
 const AustriaSuspense = () => {
