@@ -43,11 +43,10 @@ jobs:
           key: npm-${{ hashFiles('yarn.lock') }}
       - run: yarn lint
 
-  deploy:
+  depcheck:
     runs-on: ubuntu-18.04
-    needs: [format, lint]
-    if: github.ref == 'refs/heads/master'
-    steps: 
+    needs: [install]
+    steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -56,4 +55,5 @@ jobs:
         with:
           path: node_modules
           key: npm-${{ hashFiles('yarn.lock') }}
-      - run: yarn build
+      - run: yarn depcheck
+    
