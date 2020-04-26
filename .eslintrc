@@ -16,6 +16,7 @@
     "browser": true
   },
   "rules": {
-    "import/no-unresolved": [2, { "ignore": ["\\.(css|jpg|png|svg)$"] }]
+    "import/no-unresolved": [2, { "ignore": ["\\.(css|jpg|png|svg)$"] }],
+    "react/prop-types": 0
   }
 }

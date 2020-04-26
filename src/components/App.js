@@ -1,6 +1,11 @@
-import React from 'react';
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
-import ErrorButton from './ErrorButton';
+import React, { useEffect } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import { Router, Switch, Route } from 'react-router-dom';
+import debug from 'debug';
+import CaseDirectory from './CaseDirectory';
+import SwitzerlandCases from './SwitzerlandCases';
+import LearnReact from './LearnReact';
+import { history } from '../helpers/historyHelpers';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -8,66 +13,25 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Container = styled.div`
-  text-align: center;
-`;
-
-const Header = styled.header`
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #ffffff;
-`;
-
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const Logo = styled.img`
-  height: 40vmin;
-  pointer-events: none;
-  animation: ${rotate} infinite 20s linear;
-`;
-
-const Link = styled.a`
-  color: #61dafb;
-`;
-
 const App = () => {
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      debug.enable('ReactAppTest:*');
+    }
+  }, []);
+
   return (
     <React.StrictMode>
-      <GlobalStyle />
-      <Container>
-        <Header>
-          <Logo src={require('../assets/logo.svg')} alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <p>
-            <ErrorButton />
-          </p>
-          <p>Test</p>
-          <p>
-            <Link
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </Link>
-          </p>
-        </Header>
-      </Container>
+      <Router history={history}>
+        <>
+          <GlobalStyle />
+          <Switch>
+            <Route exact path="/" component={CaseDirectory} />
+            <Route exact path="/switzerland" component={SwitzerlandCases} />
+            <Route component={LearnReact} />
+          </Switch>
+        </>
+      </Router>
     </React.StrictMode>
   );
 };

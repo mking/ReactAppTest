@@ -10,6 +10,7 @@
     "depcheck": "depcheck"
   },
   "dependencies": {
+    "debug": "^4.1.1",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
@@ -33,9 +34,11 @@
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "file-loader": "4.3.0",
+    "history": "^4.10.1",
     "html-webpack-plugin": "4.0.0-beta.11",
     "prettier": "^2.0.5",
     "react-dev-utils": "^10.2.1",
+    "react-router-dom": "^5.1.2",
     "static-server": "^2.2.1",
     "styled-components": "^5.1.0",
     "stylelint": "^13.3.3",
