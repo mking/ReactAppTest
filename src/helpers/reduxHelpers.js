@@ -6,6 +6,7 @@ import {
 import thunk from 'redux-thunk';
 import { axiosInstance } from './axiosHelpers';
 import rootReducer from '../reducers/rootReducer';
+import { SET_COMMENT } from '../constants/austriaConstants';
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -15,8 +16,13 @@ export const store = configureStore({
     }),
     ...(process.env.NODE_ENV === 'development'
       ? [
-          createImmutableStateInvariantMiddleware({}),
-          createSerializableStateInvariantMiddleware({}),
+          createImmutableStateInvariantMiddleware({
+            ignoredPaths: ['austria.comment'],
+          }),
+          createSerializableStateInvariantMiddleware({
+            ignoredActions: [SET_COMMENT],
+            ignoredPaths: ['austria.comment'],
+          }),
         ]
       : []),
   ],

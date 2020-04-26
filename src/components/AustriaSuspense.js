@@ -1,5 +1,5 @@
 import Promise from 'bluebird';
-import React, { Suspense } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Loading = styled.div`
@@ -18,9 +18,9 @@ const AustriaCases = React.lazy(async () => {
 
 const AustriaSuspense = () => {
   return (
-    <Suspense fallback={<Loading>Loading...</Loading>}>
+    <React.Suspense fallback={<Loading>Loading...</Loading>}>
       <AustriaCases />
-    </Suspense>
+    </React.Suspense>
   );
 };
 

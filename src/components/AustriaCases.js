@@ -73,7 +73,7 @@ const AustriaCases = ({
       <p>Austria</p>
       <hr />
       <p>
-        <button type="button" onClick={onFoo}>
+        <button type="button" disabled={recordLoading} onClick={onFoo}>
           Foo
         </button>
       </p>

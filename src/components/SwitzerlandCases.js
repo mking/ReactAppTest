@@ -41,7 +41,7 @@ const SwitzerlandCases = ({ caseLoading, caseEntities, getCaseEntities }) => {
       </p>
       <p>Switzerland</p>
       <p>
-        <button type="button" onClick={onClick}>
+        <button type="button" disabled={caseLoading} onClick={onClick}>
           Get cases {caseLoading ? '(loading...)' : ''}
         </button>
       </p>
