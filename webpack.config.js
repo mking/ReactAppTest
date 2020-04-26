@@ -61,35 +61,6 @@ module.exports = {
               cacheCompression: false,
             },
           },
-          // compile css with postcss
-          {
-            test: /\.css$/,
-            use: [
-              require.resolve('style-loader'),
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 1,
-                },
-              },
-              {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                  plugins: () => [
-                    require('postcss-flexbugs-fixes'),
-                    require('postcss-preset-env')({
-                      autoprefixer: {
-                        flexbox: 'no-2009',
-                      },
-                      stage: 3,
-                    }),
-                    // create normalize based on browserslist in package.json
-                    require('postcss-normalize')(),
-                  ],
-                },
-              },
-            ],
-          },
           // include images
           {
             loader: require.resolve('file-loader'),
