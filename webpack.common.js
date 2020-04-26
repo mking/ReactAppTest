@@ -77,8 +77,20 @@ module.exports = ({ mode }) => ({
                   },
               {
                 loader: require.resolve('css-loader'),
+              },
+              {
+                // needed for browser fixes
+                loader: require.resolve('postcss-loader'),
                 options: {
-                  modules: true,
+                  plugins: () => [
+                    require('postcss-preset-env')({
+                      autoprefixer: {
+                        flexbox: 'no-2009',
+                      },
+                      stage: 3,
+                    }),
+                  ],
+                  sourceMap: mode === 'production',
                 },
               },
             ],
