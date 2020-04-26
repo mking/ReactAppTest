@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
 
-const Loading = styled.div`
+const Container = styled.div`
   color: #ffffff;
   font-size: 30px;
   display: flex;
@@ -8,5 +9,7 @@ const Loading = styled.div`
   justify-content: center;
   min-height: 100vh;
 `;
+
+const Loading = () => <Container>Loading...</Container>;
 
 export default Loading;

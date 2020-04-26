@@ -23,7 +23,7 @@ const AustriaCases = React.lazy(async () => {
 
 const AustriaSuspense = () => {
   return (
-    <React.Suspense fallback={<Loading>Loading...</Loading>}>
+    <React.Suspense fallback={<Loading />}>
       <AustriaCases />
     </React.Suspense>
   );
