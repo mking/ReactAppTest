@@ -68,12 +68,13 @@ module.exports = ({ mode }) => ({
               path.resolve(__dirname, 'node_modules/react-rte'),
             ],
             use: [
-              {
-                loader:
-                  mode === 'development'
-                    ? require.resolve('style-loader')
-                    : MiniCssExtractPlugin.loader,
-              },
+              mode === 'development'
+                ? {
+                    loader: require.resolve('style-loader'),
+                  }
+                : {
+                    loader: MiniCssExtractPlugin.loader,
+                  },
               {
                 loader: require.resolve('css-loader'),
                 options: {

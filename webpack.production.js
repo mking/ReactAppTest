@@ -5,6 +5,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const common = require('./webpack.common');
 
 const commonConfig = common({
@@ -27,16 +28,17 @@ module.exports = {
         to: path.resolve(__dirname, 'dist'),
       },
     ]),
+    new MiniCssExtractPlugin({
+      filename: 'static/css/[name].[hash].css',
+      chunkFilename: 'static/css/[id].[hash].css',
+    }),
+    new StyleExtHtmlWebpackPlugin(),
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
       generateStatsFile: true,
       statsOptions: {
         source: false,
       },
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].[hash].css',
     }),
   ],
 };
