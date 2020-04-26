@@ -43,13 +43,9 @@ jobs:
           key: npm-${{ hashFiles('yarn.lock') }}
       - run: yarn lint
 
-  test:
-    runs-on: ubuntu-18.04
-    needs: [format, lint]
-  
   deploy:
     runs-on: ubuntu-18.04
-    needs: [test]
+    needs: [format, lint]
     if: github.ref == 'refs/heads/master'
     steps: 
       - uses: actions/checkout@v2
