@@ -24,6 +24,7 @@ const SwitzerlandCases = () => {
       <p>
         <StyledLink to="/">Home</StyledLink>
       </p>
+      <p>Switzerland</p>
       <p>
         <button type="button" onClick={onClick}>
           Get cases

@@ -4,6 +4,7 @@ import { Router, Switch, Route } from 'react-router-dom';
 import debug from 'debug';
 import CaseDirectory from './CaseDirectory';
 import SwitzerlandCases from './SwitzerlandCases';
+import AustriaCases from './AustriaCases';
 import LearnReact from './LearnReact';
 import { history } from '../helpers/historyHelpers';
 
@@ -28,6 +29,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={CaseDirectory} />
             <Route exact path="/switzerland" component={SwitzerlandCases} />
+            <Route exact path="/austria" component={AustriaCases} />
             <Route component={LearnReact} />
           </Switch>
         </>

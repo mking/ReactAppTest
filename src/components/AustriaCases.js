@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import StyledLink from './Common/StyledLink';
 
+const debug = require('debug')('ReactAppTest:AustriaCases');
+
 const Container = styled.div`
   background-color: #282c34;
   min-height: 100vh;
@@ -12,24 +14,24 @@ const Container = styled.div`
   color: #ffffff;
 `;
 
-const SwitzerlandCases = () => {
+const AustriaCases = () => {
+  const onClick = () => {
+    debug('fetching austria cases');
+  };
+
   return (
     <Container>
-      <p>Countries</p>
       <p>
-        <StyledLink to="/switzerland">Switzerland</StyledLink>
+        <StyledLink to="/">Home</StyledLink>
       </p>
+      <p>Austria</p>
       <p>
-        <StyledLink to="/austria">Austria</StyledLink>
-      </p>
-      <p>
-        <StyledLink to="/france">France</StyledLink>
-      </p>
-      <p>
-        <StyledLink to="/request">Request a country</StyledLink>
+        <button type="button" onClick={onClick}>
+          Get cases
+        </button>
       </p>
     </Container>
   );
 };
 
-export default SwitzerlandCases;
+export default AustriaCases;
