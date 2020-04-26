@@ -1,2 +1,5 @@
 ignores:
-  - "webpack-cli"
+  - webpack-cli
+  - stylelint-config-standard
+  - stylelint-config-styled-components
+  - stylelint-processor-styled-components

@@ -3,7 +3,7 @@ import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import ErrorButton from './ErrorButton';
 
 const GlobalStyle = createGlobalStyle`
-  body: {
+  body {
     margin: 0;
   }
 `;
