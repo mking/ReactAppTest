@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import StyledLink from './Common/StyledLink';
+import StyledLink from '@app/src/components/Common/StyledLink';
 
 const Container = styled.div`
   min-height: 100vh;

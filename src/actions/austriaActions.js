@@ -3,7 +3,7 @@
 import fp from 'lodash/fp';
 import Promise from 'bluebird';
 import { createAction } from '@reduxjs/toolkit';
-import { createEntitySlice } from '../helpers/entityHelpers';
+import { createEntitySlice } from '@app/src/helpers/entityHelpers';
 
 export const SET_FOO = 'austria/SET_FOO';
 export const SET_COMMENT = 'austria/SET_COMMENT';

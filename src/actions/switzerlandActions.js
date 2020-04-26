@@ -2,7 +2,7 @@
 
 import fp from 'lodash/fp';
 import Promise from 'bluebird';
-import { createEntitySlice } from '../helpers/entityHelpers';
+import { createEntitySlice } from '@app/src/helpers/entityHelpers';
 
 export const caseSlice = createEntitySlice({
   reducerKey: 'switzerland',

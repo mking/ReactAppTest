@@ -1,4 +1,4 @@
-import { caseSlice } from '../actions/switzerlandActions';
+import { caseSlice } from '@app/src/actions/switzerlandActions';
 
 const {
   caseLoadingSelector,

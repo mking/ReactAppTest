@@ -2,8 +2,8 @@
 
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import ErrorButton from './ErrorButton';
-import StyledLink from './Common/StyledLink';
+import ErrorButton from '@app/src/components/ErrorButton';
+import StyledLink from '@app/src/components/Common/StyledLink';
 
 const Container = styled.div`
   min-height: 100vh;

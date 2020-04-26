@@ -1,5 +1,5 @@
 import fp from 'lodash/fp';
-import { recordSlice } from '../actions/austriaActions';
+import { recordSlice } from '@app/src/actions/austriaActions';
 
 export const fooSelector = fp.get(['austria', 'foo']);
 export const commentSelector = fp.get(['austria', 'comment']);

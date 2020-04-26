@@ -6,3 +6,5 @@ update_configs:
     ignored_updates:
       - match:
           dependency_name: "immutable"
+      - match:
+        dependency_name: "eslint-import-resolver-babel-module"

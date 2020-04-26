@@ -3,12 +3,12 @@ import { createGlobalStyle } from 'styled-components';
 import { Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import debug from 'debug';
-import CaseDirectory from './CaseDirectory';
-import SwitzerlandCases from './SwitzerlandCases';
-import AustriaSuspense from './AustriaSuspense';
-import LearnReact from './LearnReact';
-import { history } from '../helpers/routerHelpers';
-import { store } from '../helpers/reduxHelpers';
+import CaseDirectory from '@app/src/components/CaseDirectory';
+import SwitzerlandCases from '@app/src/components/SwitzerlandCases';
+import AustriaSuspense from '@app/src/components/AustriaSuspense';
+import LearnReact from '@app/src/components/LearnReact';
+import { history } from '@app/src/helpers/routerHelpers';
+import { store } from '@app/src/helpers/reduxHelpers';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -39,7 +39,6 @@ const App = () => {
           </>
         </Router>
       </Provider>
-      s
     </React.StrictMode>
   );
 };

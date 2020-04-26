@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
-import { recordSlice, setFoo, setComment } from '../actions/austriaActions';
+import {
+  recordSlice,
+  setFoo,
+  setComment,
+} from '@app/src/actions/austriaActions';
 import { createReducer } from '@reduxjs/toolkit';
 import { EditorState } from 'draft-js';
 

@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Editor } from 'draft-js';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
-import StyledLink from './Common/StyledLink';
+import StyledLink from '@app/src/components/Common/StyledLink';
 import {
   getRecordEntities,
   setFoo,
   setComment,
-} from '../actions/austriaActions';
+} from '@app/src/actions/austriaActions';
 import {
   recordLoadingSelector,
   recordEntitiesSelector,
   fooSelector,
   commentSelector,
-} from '../selectors/austriaSelectors';
+} from '@app/src/selectors/austriaSelectors';
 
 const debug = require('debug')('ReactAppTest:AustriaCases');
 
@@ -35,11 +35,18 @@ const TableData = styled.td`
   font-size: 16px;
 `;
 
-const EditorContainer = styled.div`
+const CommentContainer = styled.div`
   border: 1px solid #ffffff;
   padding: 20px;
   width: 400px;
   min-height: 6em;
+  box-sizing: border-box;
+`;
+
+const Divider = styled.hr`
+  width: 400px;
+  border-color: rgba(0, 0, 0, 0);
+  border-top-color: #cccccc;
 `;
 
 const AustriaCases = ({
@@ -51,6 +58,8 @@ const AustriaCases = ({
   setFoo,
   setComment,
 }) => {
+  const editorRef = useRef(null);
+
   const onClick = async () => {
     debug('fetching austria records');
     await getRecordEntities();
@@ -59,6 +68,12 @@ const AustriaCases = ({
   const onFoo = async () => {
     debug('doing foo');
     await setFoo(foo + 1);
+  };
+
+  const onCommentContainerClick = () => {
+    if (editorRef.current) {
+      editorRef.current.focus();
+    }
   };
 
   const onCommentChange = (editorState) => {
@@ -71,21 +86,25 @@ const AustriaCases = ({
         <StyledLink to="/">Home</StyledLink>
       </p>
       <p>Austria</p>
-      <hr />
+      <Divider />
       <p>
-        <button type="button" disabled={recordLoading} onClick={onFoo}>
+        <button type="button" onClick={onFoo}>
           Foo
         </button>
       </p>
       <p>foo: {foo}</p>
-      <hr />
+      <Divider />
       <p>Add note about Austria</p>
-      <EditorContainer>
-        <Editor editorState={comment} onChange={onCommentChange} />
-      </EditorContainer>
-      <hr />
+      <CommentContainer onClick={onCommentContainerClick}>
+        <Editor
+          ref={editorRef}
+          editorState={comment}
+          onChange={onCommentChange}
+        />
+      </CommentContainer>
+      <Divider />
       <p>
-        <button type="button" onClick={onClick}>
+        <button type="button" disabled={recordLoading} onClick={onClick}>
           Get Austria records {recordLoading ? '(loading...)' : ''}
         </button>
       </p>

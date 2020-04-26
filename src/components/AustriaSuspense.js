@@ -13,7 +13,9 @@ const Loading = styled.div`
 
 const AustriaCases = React.lazy(async () => {
   await Promise.delay(1000);
-  return import(/* webpackChunkName: "austria" */ './AustriaCases');
+  return import(
+    /* webpackChunkName: "austria" */ '@app/src/components/AustriaCases'
+  );
 });
 
 const AustriaSuspense = () => {

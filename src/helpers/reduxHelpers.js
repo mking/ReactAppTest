@@ -4,9 +4,9 @@ import {
   createSerializableStateInvariantMiddleware,
 } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import { axiosInstance } from './axiosHelpers';
-import rootReducer from '../reducers/rootReducer';
-import { SET_COMMENT } from '../constants/austriaConstants';
+import { axiosInstance } from '@app/src/helpers/axiosHelpers';
+import rootReducer from '@app/src/reducers/rootReducer';
+import { SET_COMMENT } from '@app/src/constants/austriaConstants';
 
 export const store = configureStore({
   reducer: rootReducer,

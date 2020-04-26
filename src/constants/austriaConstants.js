@@ -1,4 +1,8 @@
-import { recordSlice, SET_FOO, SET_COMMENT } from '../actions/austriaActions';
+import {
+  recordSlice,
+  SET_FOO,
+  SET_COMMENT,
+} from '@app/src/actions/austriaActions';
 
 const {
   SET_RECORD_LOADING,
