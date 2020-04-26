@@ -1,4 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  font-size: 40;
+  color: #ff0000;
+`;
 
 const ErrorButton = () => {
   const onError = () => {
@@ -6,17 +12,10 @@ const ErrorButton = () => {
   };
 
   return (
-    <button css={styles.button} type="button" onClick={onError}>
+    <Button type="button" onClick={onError}>
       Error
-    </button>
+    </Button>
   );
-};
-
-const styles = {
-  button: {
-    fontSize: 40,
-    color: '#ff0000',
-  },
 };
 
 export default ErrorButton;

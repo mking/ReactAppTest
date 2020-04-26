@@ -29,7 +29,7 @@ jobs:
           key: npm-${{ hashFiles('yarn.lock') }}
       - run: yarn format
 
-  lint:
+  eslint:
     runs-on: ubuntu-18.04
     needs: [install]
     steps:
@@ -41,7 +41,21 @@ jobs:
         with:
           path: node_modules
           key: npm-${{ hashFiles('yarn.lock') }}
-      - run: yarn lint
+      - run: yarn eslint
+
+  stylelint:
+    runs-on: ubuntu-18.04
+    needs: [install]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-${{ hashFiles('yarn.lock') }}
+      - run: yarn stylelint
 
   depcheck:
     runs-on: ubuntu-18.04
