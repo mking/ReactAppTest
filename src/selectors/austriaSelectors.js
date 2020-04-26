@@ -1,3 +1,4 @@
+import fp from 'lodash/fp';
 import { recordSlice } from '../actions/austriaActions';
 
 const {
@@ -13,3 +14,5 @@ export {
   recordRequestIdSelector,
   recordEntitiesSelector,
 };
+
+export const fooSelector = fp.get(['austria', 'foo']);

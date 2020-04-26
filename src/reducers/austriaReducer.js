@@ -1,4 +1,12 @@
 import { combineReducers } from 'redux';
-import { recordSlice } from '../actions/austriaActions';
+import { recordSlice, setFoo } from '../actions/austriaActions';
+import { createReducer } from '@reduxjs/toolkit';
 
-export default combineReducers(recordSlice.reducers);
+const fooReducer = createReducer(0, {
+  [setFoo]: (state, action) => action.payload,
+});
+
+export default combineReducers({
+  ...recordSlice.reducers,
+  foo: fooReducer,
+});

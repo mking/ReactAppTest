@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import StyledLink from './Common/StyledLink';
-import { getRecordEntities } from '../actions/austriaActions';
+import { getRecordEntities, setFoo } from '../actions/austriaActions';
 import {
   recordLoadingSelector,
   recordEntitiesSelector,
+  fooSelector,
 } from '../selectors/austriaSelectors';
 
 const debug = require('debug')('ReactAppTest:AustriaCases');
@@ -29,10 +30,21 @@ const TableData = styled.td`
   font-size: 16px;
 `;
 
-const AustriaCases = ({ recordLoading, recordEntities, getRecordEntities }) => {
+const AustriaCases = ({
+  recordLoading,
+  recordEntities,
+  foo,
+  getRecordEntities,
+  setFoo,
+}) => {
   const onClick = async () => {
     debug('fetching austria records');
     await getRecordEntities();
+  };
+
+  const onFoo = async () => {
+    debug('doing foo');
+    await setFoo(foo + 1);
   };
 
   return (
@@ -46,6 +58,12 @@ const AustriaCases = ({ recordLoading, recordEntities, getRecordEntities }) => {
           Get Austria records {recordLoading ? '(loading...)' : ''}
         </button>
       </p>
+      <p>
+        <button type="button" onClick={onFoo}>
+          Foo
+        </button>
+      </p>
+      <p>foo: {foo}</p>
       <Table loadingFlag={recordLoading}>
         <tbody>
           {recordEntities.map((recordEntity) => (
@@ -64,10 +82,12 @@ const AustriaCases = ({ recordLoading, recordEntities, getRecordEntities }) => {
 const mapStateToProps = createStructuredSelector({
   recordLoading: recordLoadingSelector,
   recordEntities: recordEntitiesSelector,
+  foo: fooSelector,
 });
 
 const mapDispatchToProps = {
   getRecordEntities,
+  setFoo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AustriaCases);

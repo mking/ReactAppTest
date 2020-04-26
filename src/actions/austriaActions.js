@@ -2,7 +2,10 @@
 
 import fp from 'lodash/fp';
 import Promise from 'bluebird';
+import { createAction } from '@reduxjs/toolkit';
 import { createEntitySlice } from '../helpers/entityHelpers';
+
+export const SET_FOO = 'austria/SET_FOO';
 
 export const recordSlice = createEntitySlice({
   reducerKey: 'austria',
@@ -20,3 +23,5 @@ export const recordSlice = createEntitySlice({
 });
 
 export const getRecordEntities = recordSlice.actions.getRecordEntities;
+
+export const setFoo = createAction(SET_FOO);
