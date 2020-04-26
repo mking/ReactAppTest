@@ -7,4 +7,4 @@ update_configs:
       - match:
           dependency_name: "immutable"
       - match:
-        dependency_name: "eslint-import-resolver-babel-module"
+          dependency_name: "eslint-import-resolver-babel-module"
