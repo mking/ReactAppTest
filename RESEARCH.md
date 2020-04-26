@@ -1,7 +1,7 @@
 # Research
 
 TODO
-- Try module resolver with eslint
+- Prod is broken???
 
 Development build checks
 - Does hot reloading work (check both css and js)?
